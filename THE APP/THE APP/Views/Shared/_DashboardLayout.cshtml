@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Freelance System</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <header class="text-center mb-3">
+        <h1>@Html.ActionLink("Freelance System", "Index", "Home", null, new { area = "", @class = "text-dark " })</h1>
+    </header>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <ul class="navbar-nav">
+                <li class="nav-item">@Html.ActionLink("", "", "Profile", new { @class="nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("", "", "Users Page", new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("", "", "Posts Page", new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("", "", "Posts Requests", new { @class = "nav-link" })</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Freelance System</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

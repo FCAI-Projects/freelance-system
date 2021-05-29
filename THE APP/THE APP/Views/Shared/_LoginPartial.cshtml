@@ -1,0 +1,131 @@
+﻿@using Microsoft.AspNet.Identity
+@model THE_APP.Models.RegisterLoginViewModel
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="navbar-nav flex-row">
+            @*<li class="nav-item mx-1">
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+                </li>*@
+            <li class="nav-item mx-1"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="navbar-nav flex-row">
+        <li class="nav-item mx-1" data-bs-toggle="modal" data-bs-target="#registerationModal"><a href="#" class="nav-link">Register</a></li>
+        <li class="nav-item mx-1" data-bs-toggle="modal" data-bs-target="#loginModal"><a href="#" class="nav-link">Login</a></li>
+    </ul>
+    <div class="modal fade" id="registerationModal" tabindex="-1" aria-labelledby="registerationModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create a new account.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "registerform" }))
+                {
+                    <div class="modal-body">
+
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        <div class="form-group mb-2">
+                            @Html.LabelFor(m => m.RegisterModel.Fname, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.RegisterModel.Fname, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-2">
+                            @Html.LabelFor(m => m.RegisterModel.Lname, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.RegisterModel.Lname, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-2">
+                            @Html.LabelFor(m => m.RegisterModel.Email, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.RegisterModel.Email, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-2">
+                            @Html.LabelFor(m => m.RegisterModel.Number, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.RegisterModel.Number, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-2">
+                            @Html.LabelFor(m => m.RegisterModel.Password, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-12">
+                                @Html.PasswordFor(m => m.RegisterModel.Password, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-2">
+                            @Html.LabelFor(m => m.RegisterModel.ConfirmPassword, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-12">
+                                @Html.PasswordFor(m => m.RegisterModel.ConfirmPassword, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-2">
+                            @Html.LabelFor(m => m.RegisterModel.Role, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(m => m.RegisterModel.Role, new SelectList(new[] { "client", "freelancer" }), "Select Role", new { @class = "form-select" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" value="Register" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create a new account.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                @using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    <div class="modal-body">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LoginModel.Email, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.LoginModel.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.LoginModel.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LoginModel.Password, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.LoginModel.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.LoginModel.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(m => m.LoginModel.RememberMe)
+                                    @Html.LabelFor(m => m.LoginModel.RememberMe)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" value="Log in" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
