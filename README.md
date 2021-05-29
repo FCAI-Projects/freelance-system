@@ -12,7 +12,8 @@ This an ASP.NET MVC Project for IA (Internet Application) Project
 - Clone The Project `git clone URL`
 - Open The Project With Visual Studio
 - Open Package Manager Console
-- Type `update-database`
+- Type `Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r`
+- Then Type `update-database`
 
 Now The Credentials of the admin user is:
 
@@ -23,13 +24,13 @@ Password: BE'c6X?E
 
 ## Start Development
 
-- Before doing anything you need to pull the new changes from the remote repo `git pull origin main`
+- Before doing anything you need to pull the new changes from the remote repo `git pull origin master`
 - NOW lets create a new branch with your edits `git checkout -b "BRANCH_NAME"`
 - Type some CODE 💪
 - NOW LETS PUSH IT 😄
 - Type `git add .`
 - Then `git commit -m "COMMIT MESSAGE"`
-- Then `git checkout main`
+- Then `git checkout master`
 - Then Finally `git push origin BRANCH_NAME`
 
 and then come here to your branch and do PULL REQUEST ✌
