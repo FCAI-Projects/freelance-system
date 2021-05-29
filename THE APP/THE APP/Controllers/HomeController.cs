@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using THE_APP.Models;
 
 namespace THE_APP.Controllers
@@ -51,9 +52,18 @@ namespace THE_APP.Controllers
 
 
 
-        public ActionResult Index(RegisterLoginViewModel model)
+        public async Task<ActionResult> Index(RegisterLoginViewModel model)
         {
-            return View(model);
+
+            if (!User.Identity.IsAuthenticated) {
+                return View(model);
+            }
+               
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var roles = await UserManager.GetRolesAsync(user.Id);
+
+            return RedirectToLocal("/" + roles[0]);
+
         }
 
         //
@@ -62,7 +72,7 @@ namespace THE_APP.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         //
@@ -83,7 +93,7 @@ namespace THE_APP.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -100,7 +110,7 @@ namespace THE_APP.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         //
@@ -143,7 +153,7 @@ namespace THE_APP.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index");
                 }
                 AddErrors(result);
             }
@@ -184,5 +194,6 @@ namespace THE_APP.Controllers
                 ModelState.AddModelError("", error);
             }
         }
+
     }
 }

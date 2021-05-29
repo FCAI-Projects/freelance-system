@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace THE_APP.Controllers
 {
+    [Authorize(Roles = "client")]
     public class ClientController : Controller
     {
         // GET: Client

@@ -168,7 +168,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\FreelancerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,6 +195,14 @@
     <Compile Include="Migrations\202105290009158_add-posts.cs" />
     <Compile Include="Migrations\202105290009158_add-posts.Designer.cs">
       <DependentUpon>202105290009158_add-posts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105290734210_updatePost.cs" />
+    <Compile Include="Migrations\202105290734210_updatePost.Designer.cs">
+      <DependentUpon>202105290734210_updatePost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105291112047_update-post-column.cs" />
+    <Compile Include="Migrations\202105291112047_update-post-column.Designer.cs">
+      <DependentUpon>202105291112047_update-post-column.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DefaulValueAttribute.cs" />
@@ -227,6 +237,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -265,9 +276,11 @@
     <Content Include="Views\Shared\_FactoryLayout.cshtml" />
     <Content Include="Views\Shared\_DashboardLayout.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Freelancer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -297,6 +310,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105290009158_add-posts.resx">
       <DependentUpon>202105290009158_add-posts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105290734210_updatePost.resx">
+      <DependentUpon>202105290734210_updatePost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105291112047_update-post-column.resx">
+      <DependentUpon>202105291112047_update-post-column.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

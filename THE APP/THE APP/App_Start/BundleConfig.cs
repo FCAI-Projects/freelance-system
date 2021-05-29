@@ -20,7 +20,7 @@ namespace THE_APP
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap-v5.js"));
+                      "~/Scripts/bootstrap-v5.js", "~/Scripts/main.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-v5.css",
