@@ -195,5 +195,10 @@ namespace THE_APP.Controllers
             }
         }
 
+        public PartialViewResult LoginPartial()
+        {
+            return PartialView("_LoginPartial");
+        }
+
     }
 }
