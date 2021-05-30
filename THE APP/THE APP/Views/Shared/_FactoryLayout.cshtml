@@ -15,7 +15,8 @@
     </header>
     <div>
         <div class="container d-flex flex-row-reverse">
-            @Html.Partial("_LoginPartial")
+            @*Html.Partial("_LoginPartial")*@
+            @{Html.RenderAction("LoginPartial", "Home");}
         </div>
     </div>
     <hr />

@@ -18,27 +18,22 @@ namespace THE_APP.Models
 
         [Required(ErrorMessage = "You have enter job type")]
         [Display(Name= "JobType")]
-        public JobType Type { get; set; }
+        public string Type { get; set; }
 
         [Required(ErrorMessage = "You have enter Budget")]
         public int Budget { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime? CreationDate { get; set; }
+        public DateTime CreationDate { get; set; }
 
         [Required(ErrorMessage = "You have enter job Description")]
         public string Description { get; set; }
 
-        public int ProposalNum { get; set; }
+        public int ProposalNum { get; set; } = 0;
 
-        public bool isAccepted { get; set; }
+        public bool? isAccepted { get; set; }
 
         public ApplicationUser Client { get; set; }
-    }
 
-    public enum JobType
-    {
-        fixedType,
-        hourlyType
+        public string ClientId { get; set; }
     }
 }

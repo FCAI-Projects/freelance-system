@@ -1,4 +1,5 @@
-﻿using Microsoft.Graph;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,13 +26,18 @@ namespace THE_APP.Controllers
 
         [HttpGet]
         public ActionResult NewPost()
-        {
+        { 
             return View();
         }
 
         [HttpPost]
         public ActionResult NewPost(PostModel pm)
         {
+            if (!ModelState.IsValid) {
+                return View("NewPost", pm);
+            }
+            pm.ClientId = User.Identity.GetUserId();
+            pm.CreationDate = DateTime.Now;
             db.Posts.Add(pm);
             db.SaveChanges();
 

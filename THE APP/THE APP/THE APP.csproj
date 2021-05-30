@@ -239,6 +239,22 @@
     <Compile Include="Migrations\202105301734115_addTitle.Designer.cs">
       <DependentUpon>202105301734115_addTitle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105301812436_add-datetime.cs" />
+    <Compile Include="Migrations\202105301812436_add-datetime.Designer.cs">
+      <DependentUpon>202105301812436_add-datetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105301828131_add-clientid.cs" />
+    <Compile Include="Migrations\202105301828131_add-clientid.Designer.cs">
+      <DependentUpon>202105301828131_add-clientid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105301836314_update-proposal-number.cs" />
+    <Compile Include="Migrations\202105301836314_update-proposal-number.Designer.cs">
+      <DependentUpon>202105301836314_update-proposal-number.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105301848180_update-proposal-number2.cs" />
+    <Compile Include="Migrations\202105301848180_update-proposal-number2.Designer.cs">
+      <DependentUpon>202105301848180_update-proposal-number2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DefaulValueAttribute.cs" />
     <Compile Include="Models\PostModel.cs" />
@@ -359,6 +375,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105301734115_addTitle.resx">
       <DependentUpon>202105301734115_addTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105301812436_add-datetime.resx">
+      <DependentUpon>202105301812436_add-datetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105301828131_add-clientid.resx">
+      <DependentUpon>202105301828131_add-clientid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105301836314_update-proposal-number.resx">
+      <DependentUpon>202105301836314_update-proposal-number.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105301848180_update-proposal-number2.resx">
+      <DependentUpon>202105301848180_update-proposal-number2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
