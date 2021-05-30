@@ -13,6 +13,9 @@ namespace THE_APP.Models
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "You have enter job Title")]
+        public string Title { get; set; }
+
         [Required(ErrorMessage = "You have enter job type")]
         [Display(Name= "JobType")]
         public JobType Type { get; set; }
@@ -21,14 +24,13 @@ namespace THE_APP.Models
         public int Budget { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
         [Required(ErrorMessage = "You have enter job Description")]
         public string Description { get; set; }
 
         public int ProposalNum { get; set; }
 
-        [DefaultValue(true)]
         public bool isAccepted { get; set; }
 
         public ApplicationUser Client { get; set; }

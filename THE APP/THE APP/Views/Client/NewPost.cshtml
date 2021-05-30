@@ -1,7 +1,7 @@
 ﻿@model THE_APP.Models.PostModel
-
 @{
     ViewBag.Title = "NewPost";
+    Layout = "~/Views/Shared/_FactoryLayout.cshtml";
 }
 
 <h2>NewPost</h2>
@@ -9,8 +9,18 @@
 @using (Html.BeginForm())
 {
     <div class="form-group">
+        @Html.LabelFor(x => x.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Title)
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(x => x.Type)
-        @Html.TextBoxFor(m => m.Type, new { @class = "form-control"})
+        @Html.DropDownListFor(m => m.Type, new List<SelectListItem>
+        {
+            new SelectListItem{Text="fixed", Value="fixed"},
+            new SelectListItem{Text="hourly", Value="hourly"}
+        }, "Pleas Select")
         @Html.ValidationMessageFor(x => x.Type)
     </div>
 
@@ -22,7 +32,7 @@
 
     <div class="form-group">
         @Html.LabelFor(x => x.Description)
-        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Description)
     </div>
 

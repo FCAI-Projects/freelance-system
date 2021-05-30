@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -142,12 +148,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -231,6 +231,14 @@
     <Compile Include="Migrations\202105291112047_update-post-column.Designer.cs">
       <DependentUpon>202105291112047_update-post-column.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105301542311_Newpost.cs" />
+    <Compile Include="Migrations\202105301542311_Newpost.Designer.cs">
+      <DependentUpon>202105301542311_Newpost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105301734115_addTitle.cs" />
+    <Compile Include="Migrations\202105301734115_addTitle.Designer.cs">
+      <DependentUpon>202105301734115_addTitle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DefaulValueAttribute.cs" />
     <Compile Include="Models\PostModel.cs" />
@@ -305,6 +313,7 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Client\NewPost.cshtml" />
+    <Content Include="Views\Client\AllPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -344,6 +353,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105291112047_update-post-column.resx">
       <DependentUpon>202105291112047_update-post-column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105301542311_Newpost.resx">
+      <DependentUpon>202105301542311_Newpost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105301734115_addTitle.resx">
+      <DependentUpon>202105301734115_addTitle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

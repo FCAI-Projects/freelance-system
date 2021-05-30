@@ -1,4 +1,5 @@
 ﻿using Microsoft.Graph;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -39,7 +40,7 @@ namespace THE_APP.Controllers
 
         public ActionResult AllPost()
         {
-            return View();
+            return View(db.Posts.ToList());
         }
 
         public ActionResult Propsals()
