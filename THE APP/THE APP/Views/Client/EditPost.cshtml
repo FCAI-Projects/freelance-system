@@ -1,10 +1,10 @@
 ﻿@model THE_APP.Models.PostModel
 @{
-    ViewBag.Title = "NewPost";
+    ViewBag.Title = "EditPost";
     Layout = "~/Views/Shared/_FactoryLayout.cshtml";
 }
 
-<h2>New Post</h2>
+<h2>Edit Post</h2>
 
 @using (Html.BeginForm())
 {
@@ -20,7 +20,7 @@
         {
             new SelectListItem{Text="fixed", Value="fixed"},
             new SelectListItem{Text="hourly", Value="hourly"}
-        }, "Please Select", new { @class= "form-select" })
+        }, "Please Select", new { @class = "form-select" })
         @Html.ValidationMessageFor(x => x.Type, "", new { @class = "text-danger" })
     </div>
 
@@ -36,7 +36,6 @@
         @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
     </div>
 
-    <button type="submit" class="btn btn-primary form-control">Save</button>
+    <button type="submit" class="btn btn-primary form-control">Edit</button>
 
 }
-
