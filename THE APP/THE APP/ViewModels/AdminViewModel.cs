@@ -48,4 +48,10 @@ namespace THE_APP.ViewModels
         public string ConfirmPassword { get; set; }
 
     }
+
+    public class Admin
+    {
+        public AdminViewModel AdminViewModel { get; set; }
+        public AdminChangePasswordViewModel AdminChangePasswordViewModel { get; set; }
+    }
 }

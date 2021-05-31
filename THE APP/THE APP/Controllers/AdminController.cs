@@ -39,31 +39,64 @@ namespace THE_APP.Controllers
         public async Task<ActionResult> Profile()
         {
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            AdminViewModel admin = new AdminViewModel { 
+            AdminViewModel adminView = new AdminViewModel { 
                 Fname = user.Fname,
                 Lname = user.Lname,
                 Email = user.Email,
                 Number = user.PhoneNumber
             };
 
+            Admin admin = new Admin
+            {
+                AdminViewModel = adminView
+            };
+
             return View(admin);
         }
 
-        public async Task<ActionResult> Update(AdminViewModel data)
+        public async Task<ActionResult> UpdateData(Admin data)
         {
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
 
-            user.Fname = data.Fname;
-            user.Lname = data.Lname;
-            user.Email = data.Email;
-            user.PhoneNumber = data.Number;
+            user.Fname = data.AdminViewModel.Fname;
+            user.Lname = data.AdminViewModel.Lname;
+            user.Email = data.AdminViewModel.Email;
+            user.PhoneNumber = data.AdminViewModel.Number;
 
             var res = UserManager.Update(user);
 
             if (res.Succeeded) return Json(new { res = 1 });
             else return Json(new { res = user });
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UpdatePassword(Admin data)
+        {
+
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            if (data.AdminChangePasswordViewModel.Password == data.AdminChangePasswordViewModel.ConfirmPassword)
+            {
+                var res = UserManager.ChangePassword(user.Id, data.AdminChangePasswordViewModel.OldPassword, data.AdminChangePasswordViewModel.Password);
+
+                if (res.Succeeded) return Json(new { res = 1 });
+                else
+                {
+                    return Json(new { res = res });
+                }
+            } else
+            {
+                return Json(new { res = 2 });
+            }
 
 
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
     }
 }
