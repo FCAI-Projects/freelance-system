@@ -1,4 +1,12 @@
 {
-  "ExpandedNodes": [],
+  "ExpandedNodes": [
+    "",
+    "\\App_Data",
+    "\\Controllers",
+    "\\Models",
+    "\\Views",
+    "\\Views\\Home"
+  ],
+  "SelectedNode": "\\Controllers\\AdminController.cs",
   "PreviewInSolutionExplorer": false
 }

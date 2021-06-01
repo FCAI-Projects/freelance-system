@@ -17,22 +17,19 @@ namespace THE_APP.Models
         public string Title { get; set; }
 
         [Required(ErrorMessage = "You have enter job type")]
-        [Display(Name= "Job Type")]
+        [Display(Name= "JobType")]
         public string Type { get; set; }
 
         [Required(ErrorMessage = "You have enter Budget")]
         public int Budget { get; set; }
 
-        [Display(Name = "Creation Date")]
         public DateTime CreationDate { get; set; }
 
         [Required(ErrorMessage = "You have enter job Description")]
         public string Description { get; set; }
 
-        [Display(Name = "Proposal Number")]
         public int ProposalNum { get; set; } = 0;
 
-        [Display(Name = "Status")]
         public bool? isAccepted { get; set; }
 
         public ApplicationUser Client { get; set; }
