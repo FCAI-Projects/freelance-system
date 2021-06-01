@@ -61,8 +61,8 @@
     </td>
 
     <td>
-        <form action="@Url.Action("Accsept", new{ id = @item.Id })" method="delete"><input type="submit" value="Accsept" class="btn-success" /></form>
-        <form action="@Url.Action("Rigect", new{ id = @item.Id })" method="delete"><input type="submit" value="Rigect" class="btn-danger"/></form>
+        <form action="@Url.Action("Accsept", new{ id = @item.Id })" method="post"><input type="submit" value="Accsept" class="btn btn-success" /></form>
+        <form action="@Url.Action("Rigect", new{ id = @item.Id })" method="post"><input type="submit" value="Rigect" class="btn btn-danger"/></form>
         
     </td>
 </tr>

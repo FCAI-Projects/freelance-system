@@ -18,7 +18,7 @@
                 <label class="form-label mb-0 me-2" for="filter">Filter:</label>
                 <input class="form-control" id="filter" type="text" aria-label="Filter">
             </form>
-            @Html.Partial("_LoginPartial")
+            @{Html.RenderAction("LoginPartial", "Home");}
         </div>
     </nav>
     <div class="container">
