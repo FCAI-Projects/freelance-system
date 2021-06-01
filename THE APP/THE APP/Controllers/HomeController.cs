@@ -58,7 +58,7 @@ namespace THE_APP.Controllers
             if (!User.Identity.IsAuthenticated) {
                 return View(model);
             }
-               
+
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             var roles = await UserManager.GetRolesAsync(user.Id);
 

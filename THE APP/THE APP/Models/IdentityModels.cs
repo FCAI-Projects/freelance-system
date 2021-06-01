@@ -31,8 +31,9 @@ namespace THE_APP.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        public DbSet<PostModel> Posts { get; set; }
 
+        public DbSet<PostModel> Posts { get; set; }
+            
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
