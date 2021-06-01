@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using THE_APP.Models;
+using THE_APP.ViewModels;
 
 namespace THE_APP.Controllers
 {
@@ -49,18 +50,9 @@ namespace THE_APP.Controllers
         }
         return View(User);
     }
-    public ActionResult Delete(String id)
-    {
-        var User = db.Users.Single(x => x.Id == id);
-        if (User == null)
-        {
-            return HttpNotFound();
-        }
-        return View(User);
-    }
 
-    [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfiremed(String id)
+    [HttpPost]
+    public ActionResult Delete(String id)
     {
         var User = db.Users.Find(id);
         db.Users.Remove(User);
