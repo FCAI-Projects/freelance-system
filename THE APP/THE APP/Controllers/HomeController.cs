@@ -58,7 +58,7 @@ namespace THE_APP.Controllers
             if (!User.Identity.IsAuthenticated) {
                 return View(model);
             }
-               
+
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             var roles = await UserManager.GetRolesAsync(user.Id);
 
@@ -161,10 +161,11 @@ namespace THE_APP.Controllers
             // If we got this far, something failed, redisplay form
             return View("Index", model);
         }
-        public PartialViewResult LoginPartial()
-        {
+
+        public PartialViewResult LoginPartial() {
             return PartialView("_LoginPartial");
         }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
