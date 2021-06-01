@@ -1,0 +1,125 @@
+﻿@model THE_APP.ViewModels.Admin
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>Profile</h2>
+
+
+<form id="FormUpdateAdmin">
+    <div id="InputError" class="alert alert-danger" role="alert" style="display: none">
+        Please insert all Data
+    </div>
+    <div id="DataSaved" class="alert alert-success" role="alert" style="display: none">
+        Data Saved
+    </div>
+    <div id="UnexpectedError" class="alert alert-danger" role="alert" style="display: none">
+        Unexpected error
+    </div>
+    <div id="SamePassword" class="alert alert-danger" role="alert" style="display: none">
+        Password and Confirm Passowrd must be same
+    </div>
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdminViewModel.Fname, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AdminViewModel.Fname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AdminViewModel.Fname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdminViewModel.Lname, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AdminViewModel.Lname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AdminViewModel.Lname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdminViewModel.Email, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AdminViewModel.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AdminViewModel.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdminViewModel.Number, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AdminViewModel.Number, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AdminViewModel.Number, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 mt-3">
+                <button data-bs-toggle="modal" data-bs-target="#ChangePasswordModel" type="button" value="Change Password" id="ChangePassword" class="btn btn-danger">Change Password</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 mt-3">
+                <input type="button" value="Save" id="UpdateAdmin" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="modal fade" id="ChangePasswordModel" tabindex="-1" aria-labelledby="ChangePassword" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Your Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="ChangePasswordForm">
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(m => m.AdminChangePasswordViewModel.OldPassword, new { @class = "col-md-6 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.AdminChangePasswordViewModel.OldPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AdminChangePasswordViewModel.OldPassword, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AdminChangePasswordViewModel.Password, new { @class = "col-md-6 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.AdminChangePasswordViewModel.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AdminChangePasswordViewModel.Password, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AdminChangePasswordViewModel.ConfirmPassword, new { @class = "col-md-6 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.AdminChangePasswordViewModel.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AdminChangePasswordViewModel.ConfirmPassword, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="button" id="ChangePassword2" value="Change" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}
