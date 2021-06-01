@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_FactoryLayout.cshtml";
 }
 
-<h2>All Post</h2>
+<h2>AllPost</h2>
 
 <p>
-    @Html.ActionLink("Create New Post", "NewPost", "Client")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -54,8 +54,9 @@
             @Html.DisplayFor(modelItem => item.isAccepted)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditPost", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "DeletePost", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

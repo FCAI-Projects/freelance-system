@@ -17,8 +17,8 @@
             <ul class="navbar-nav flex-row">
                 <li class="nav-item me-2">@Html.ActionLink("Profile", "Index", "Admin", null, new { @class = "nav-link" })</li>
                 <li class="nav-item me-2">@Html.ActionLink("Users Page", "Index", "Admin", null, new { @class = "nav-link" })</li>
-                <li class="nav-item me-2">@Html.ActionLink("Posts Page", "AllPost", "Admin", null, new { @class = "nav-link" })</li>
-                <li class="nav-item me-2">@Html.ActionLink("Posts Requests", "Index", "Admin", null, new { @class = "nav-link" })</li>
+                <li class="nav-item me-2">@Html.ActionLink("Posts Page", "Index", "Admin", null, new { @class = "nav-link" })</li>
+                <li class="nav-item me-2">@Html.ActionLink("Posts Requests", "IsAccepted", "Admin", null, new { @class = "nav-link" })</li>
             </ul>
             @{Html.RenderAction("LoginPartial", "Home");}
         </div>

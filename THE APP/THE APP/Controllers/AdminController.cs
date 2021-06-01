@@ -7,6 +7,7 @@ using THE_APP.Models;
 
 namespace THE_APP.Controllers
 {
+   
     [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
@@ -16,46 +17,25 @@ namespace THE_APP.Controllers
         {
             return View();
         }
-
-        public ActionResult AllPost()
-        {
-            return View(db.Posts.ToList());
-        }
-
         [HttpGet]
-        public ActionResult EditPost(int id)
+        public ActionResult IsAccepted()
         {
-            return View(db.Posts.Single(p => p.Id == id));
+
+            return View(db.Posts.ToList().Where(p => p.isAccepted == null));
         }
-
-        [HttpPost]
-        public ActionResult EditPost(PostModel pm)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("EditPost", pm);
-            }
-
-            var post = db.Posts.Single(p => p.Id == pm.Id);
-            post.Title = pm.Title;
-            post.Type = pm.Type;
-            post.Budget = pm.Budget;
-            post.Description = pm.Description;
-
-            db.SaveChanges();
-
-            return RedirectToAction("AllPost");
-
-        }
-
-        [HttpGet]
-        public ActionResult DeletePost(int id)
+        public ActionResult Accsept(int id)
         {
             var post = db.Posts.Single(p => p.Id == id);
-            db.Posts.Remove(post);
+            post.isAccepted = true;
             db.SaveChanges();
-
-            return RedirectToAction("AllPost");
+            return RedirectToAction("IsAccepted");
+        }
+        public ActionResult Rigect(int id)
+        {
+            var post = db.Posts.Single(p => p.Id == id);
+            post.isAccepted = false;
+            db.SaveChanges();
+            return RedirectToAction("IsAccepted");
         }
     }
 }

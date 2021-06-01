@@ -41,48 +41,12 @@ namespace THE_APP.Controllers
             db.Posts.Add(pm);
             db.SaveChanges();
 
-            return RedirectToAction("AllPost");
+            return RedirectToAction("Index");
         }
 
         public ActionResult AllPost()
         {
-            return View(db.Posts.ToList().Where(p => p.ClientId == User.Identity.GetUserId()));
-        }
-
-        [HttpGet]
-        public ActionResult EditPost(int id)
-        {
-            return View(db.Posts.Single(p => p.Id == id));
-        }
-
-        [HttpPost]
-        public ActionResult EditPost( PostModel pm)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("EditPost", pm);
-            }
-
-            var post = db.Posts.Single(p => p.Id == pm.Id);
-            post.Title = pm.Title;
-            post.Type = pm.Type;
-            post.Budget = pm.Budget; 
-            post.Description = pm.Description;
-
-            db.SaveChanges();
-
-            return RedirectToAction("AllPost");
-
-        }
-
-        [HttpGet]
-        public ActionResult DeletePost(int id)
-        {
-            var post = db.Posts.Single(p => p.Id == id);
-            db.Posts.Remove(post);
-            db.SaveChanges();
-
-            return RedirectToAction("AllPost");
+            return View(db.Posts.ToList());
         }
 
         public ActionResult Propsals()
