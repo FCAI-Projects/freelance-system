@@ -28,9 +28,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ProposalNum)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isAccepted)
-        </th>
+        
 
         <th></th>
     </tr>
@@ -56,13 +54,11 @@
     <td>
         @Html.DisplayFor(modelItem => item.ProposalNum)
     </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.isAccepted)
-    </td>
+    
 
     <td>
-        <form action="@Url.Action("Accsept", new{ id = @item.Id })" method="delete"><input type="submit" value="Accsept" class="btn-success" /></form>
-        <form action="@Url.Action("Rigect", new{ id = @item.Id })" method="delete"><input type="submit" value="Rigect" class="btn-danger"/></form>
+        <form action="@Url.Action("Accsept", new{ id = @item.Id })" method="post"><input type="submit" value="Accsept" class="btn btn-success" /></form>
+        <form action="@Url.Action("Reject", new{ id = @item.Id })" method="post"><input type="submit" value="Reject" class="btn btn-danger"/></form>
         
     </td>
 </tr>

@@ -30,7 +30,7 @@ namespace THE_APP.Controllers
             db.SaveChanges();
             return RedirectToAction("IsAccepted");
         }
-        public ActionResult Rigect(int id)
+        public ActionResult Reject(int id)
         {
             var post = db.Posts.Single(p => p.Id == id);
             post.isAccepted = false;
