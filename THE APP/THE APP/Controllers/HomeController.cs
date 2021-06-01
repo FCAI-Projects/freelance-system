@@ -162,7 +162,9 @@ namespace THE_APP.Controllers
             return View("Index", model);
         }
 
-        
+        public PartialViewResult LoginPartial() {
+            return PartialView("_LoginPartial");
+        }
 
         public ActionResult About()
         {

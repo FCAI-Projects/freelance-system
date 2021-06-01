@@ -17,7 +17,7 @@ namespace THE_APP.Migrations
                         CreationDate = c.DateTime(nullable: false),
                         Description = c.String(),
                         ProposalNum = c.Int(nullable: false),
-                        isAccepted = c.Boolean(nullable: false),
+                        isAccepted = c.Boolean(nullable: true),
                         Client_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
