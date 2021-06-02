@@ -97,6 +97,9 @@ namespace THE_APP.Models
         [Display(Name = "Role")]
         public string Role { get; set; }
 
+        [Display(Name = "Photo")]
+        public string PhotoPath { get; set; }
+
     }
 
     public class RegisterLoginViewModel {

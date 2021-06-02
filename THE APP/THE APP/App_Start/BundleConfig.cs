@@ -27,6 +27,7 @@ namespace THE_APP
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-v5.css",
+                      "~/Content/all.min.css",
                       "~/Content/site.css"));
         }
     }

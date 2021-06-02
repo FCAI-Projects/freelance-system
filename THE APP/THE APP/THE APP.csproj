@@ -255,12 +255,45 @@
     <Compile Include="Migrations\202105301848180_update-proposal-number2.Designer.cs">
       <DependentUpon>202105301848180_update-proposal-number2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106020210263_add-proposal.cs" />
+    <Compile Include="Migrations\202106020210263_add-proposal.Designer.cs">
+      <DependentUpon>202106020210263_add-proposal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106020221050_add-proposal-satus.cs" />
+    <Compile Include="Migrations\202106020221050_add-proposal-satus.Designer.cs">
+      <DependentUpon>202106020221050_add-proposal-satus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106020225311_add-proposal-client.cs" />
+    <Compile Include="Migrations\202106020225311_add-proposal-client.Designer.cs">
+      <DependentUpon>202106020225311_add-proposal-client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106020329147_saved-posts.cs" />
+    <Compile Include="Migrations\202106020329147_saved-posts.Designer.cs">
+      <DependentUpon>202106020329147_saved-posts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106020349160_saved-posts-rm-id.cs" />
+    <Compile Include="Migrations\202106020349160_saved-posts-rm-id.Designer.cs">
+      <DependentUpon>202106020349160_saved-posts-rm-id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106020505315_add-posts-rate.cs" />
+    <Compile Include="Migrations\202106020505315_add-posts-rate.Designer.cs">
+      <DependentUpon>202106020505315_add-posts-rate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106021508493_add-photopath.cs" />
+    <Compile Include="Migrations\202106021508493_add-photopath.Designer.cs">
+      <DependentUpon>202106021508493_add-photopath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DefaulValueAttribute.cs" />
     <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\PostsRate.cs" />
+    <Compile Include="Models\ProposalModel.cs" />
+    <Compile Include="Models\SavedPostsModel.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\FreelancerViewModels.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -339,11 +372,15 @@
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Admin\ViewUser.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Client\Proposals.cshtml" />
+    <Content Include="Views\Freelancer\SavedPosts.cshtml" />
+    <Content Include="Views\Client\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Freelancer\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -397,6 +434,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105301848180_update-proposal-number2.resx">
       <DependentUpon>202105301848180_update-proposal-number2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106020210263_add-proposal.resx">
+      <DependentUpon>202106020210263_add-proposal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106020221050_add-proposal-satus.resx">
+      <DependentUpon>202106020221050_add-proposal-satus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106020225311_add-proposal-client.resx">
+      <DependentUpon>202106020225311_add-proposal-client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106020329147_saved-posts.resx">
+      <DependentUpon>202106020329147_saved-posts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106020349160_saved-posts-rm-id.resx">
+      <DependentUpon>202106020349160_saved-posts-rm-id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106020505315_add-posts-rate.resx">
+      <DependentUpon>202106020505315_add-posts-rate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106021508493_add-photopath.resx">
+      <DependentUpon>202106021508493_add-photopath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

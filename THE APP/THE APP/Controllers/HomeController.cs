@@ -2,12 +2,14 @@
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using THE_APP.Models;
+using THE_APP.ViewModels;
 
 namespace THE_APP.Controllers
 {
@@ -15,6 +17,8 @@ namespace THE_APP.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        ApplicationDbContext db = new ApplicationDbContext();
 
         public HomeController()
         {
@@ -52,17 +56,40 @@ namespace THE_APP.Controllers
 
 
 
-        public async Task<ActionResult> Index(RegisterLoginViewModel model)
+        public async Task<ActionResult> Index(HomeViewModel model, string search = null)
         {
-
+            if (search != null) {
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                foreach (var m in model.Posts) {
+                    m.Client = db.Users.Single(u => u.Id == m.ClientId);
+                }
+                model.Posts = model.Posts.Where(post => post.Title.Contains(search) || post.Client.Fname.Contains(search) || post.Client.Lname.Contains(search) || post.CreationDate.ToString().Contains(search));
+                return View(model);
+            }
+            
             if (!User.Identity.IsAuthenticated) {
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
                 return View(model);
             }
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+<<<<<<< HEAD
              var roles = await UserManager.GetRolesAsync(user.Id);
 
             return RedirectToLocal("/" + roles[0]);
+=======
+            var roles = await UserManager.GetRolesAsync(user.Id);
+            if (roles[0] != "freelancer")
+            {
+                return RedirectToLocal("/" + roles[0]);
+            }
+            else {
+                var UserId = User.Identity.GetUserId();
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                model.SavedPosts = db.SavedPosts.ToList().Where(post => post.FreelancerId == UserId);
+                return View(model);
+            }
+>>>>>>> master
 
         }
 
@@ -80,10 +107,11 @@ namespace THE_APP.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(RegisterLoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(HomeViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
                 return View("Index", model);
             }
 
@@ -101,6 +129,7 @@ namespace THE_APP.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
+                    model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
                     return View("Index", model);
             }
         }
@@ -118,17 +147,34 @@ namespace THE_APP.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterLoginViewModel model)
+        public async Task<ActionResult> Register(HomeViewModel model, HttpPostedFileBase file)
         {
 
             if (ModelState.IsValid)
             {
+                string fileName = "";
+
+                if (file != null)
+                {
+                    Random rnd = new Random();
+                    string extension = Path.GetExtension(file.FileName);
+                    string newName = rnd.Next(0, 15153515) + DateTime.Now.Millisecond.ToString() + extension;
+                    file.SaveAs(HttpContext.Server.MapPath("~/Uploads/") + newName);
+                    fileName = newName;
+                }
+                else
+                {
+                    fileName = "default.png";
+                }
+
                 var user = new ApplicationUser
                 {
                     UserName = model.RegisterModel.Email,
                     Email = model.RegisterModel.Email,
                     Fname = model.RegisterModel.Fname,
-                    Lname = model.RegisterModel.Lname
+                    Lname = model.RegisterModel.Lname,
+                    PhoneNumber = model.RegisterModel.Number,
+                    PhotoPath = fileName
                 };
                 var result = await UserManager.CreateAsync(user, model.RegisterModel.Password);
                 if (result.Succeeded)
@@ -159,6 +205,7 @@ namespace THE_APP.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
             return View("Index", model);
         }
 
@@ -166,18 +213,29 @@ namespace THE_APP.Controllers
             return PartialView("_LoginPartial");
         }
 
-        public ActionResult About()
+        public ActionResult Details(int id)
         {
-            ViewBag.Message = "Your application description page.";
+            var UserId = User.Identity.GetUserId();
+            HomeViewModel model = new HomeViewModel
+            {
+                SinglePost = db.Posts.ToList().SingleOrDefault(post => post.Id == id)
+            };
 
-            return View();
+            model.Rate = db.PostsRate.SingleOrDefault(r => r.FreelancerId == UserId && r.PostId == model.SinglePost.Id);
+            model.SinglePost.Client = db.Users.ToList().SingleOrDefault(user => user.Id == model.SinglePost.ClientId);
+            return View(model);
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+        public ActionResult SavePost(int id) {
+            var UserId = User.Identity.GetUserId();
+            SavedPostsModel Saved = new SavedPostsModel
+            {
+                PostId = id,
+                FreelancerId = UserId
+            };
+            db.SavedPosts.Add(Saved);
+            db.SaveChanges();
+            return RedirectToAction("SavedPosts", "Freelancer");
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

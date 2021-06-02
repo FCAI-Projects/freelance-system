@@ -25,6 +25,9 @@ namespace THE_APP.ViewModels
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
 
+        [Display(Name = "Photo")]
+        public string PhotoPath { get; set; }
+
     }
 
     public class AdminChangePasswordViewModel

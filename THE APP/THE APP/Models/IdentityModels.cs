@@ -19,6 +19,9 @@ namespace THE_APP.Models
         [Required]
         public string Lname { get; set; }
 
+        [Required]
+        public string PhotoPath { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -33,7 +36,10 @@ namespace THE_APP.Models
 
 
         public DbSet<PostModel> Posts { get; set; }
-            
+        public DbSet<ProposalModel> Proposals { get; set; }
+        public DbSet<SavedPostsModel> SavedPosts { get; set; }
+        public DbSet<PostsRate> PostsRate { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
