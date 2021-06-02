@@ -42,14 +42,47 @@ namespace THE_APP.Controllers
     {
         return View(db.Users.ToList());
     }
+
+    [HttpGet]
+    public ActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> Create(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                   UserName = model.Email,
+                    Email = model.Email,
+                    Fname = model.Fname,
+                    Lname = model.Lname,
+                    PhoneNumber = model.Number
+                };
+                
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await UserManager.AddToRoleAsync(user.Id, model.Role);
+                    return RedirectToAction("Users");
+                }
+                AddErrors(result);
+            }
+            return RedirectToAction("Index");
+        }
+
     public ActionResult ViewUser(String id)
     {
-        var User = db.Users.ToList().Single(user => user.Id == id);
-        if (User == null)
-        {
-            return HttpNotFound();
-        }
-        return View(User);
+       var User = db.Users.ToList().Single(user => user.Id == id);
+       if (User == null)
+       {
+          return HttpNotFound();
+       }
+       return View(User);
     }
 
     [HttpPost]

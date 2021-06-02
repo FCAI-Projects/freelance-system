@@ -373,6 +373,7 @@
     <Content Include="Views\Admin\ViewUser.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Client\Proposals.cshtml" />
     <Content Include="Views\Freelancer\SavedPosts.cshtml" />
     <Content Include="Views\Client\Profile.cshtml" />

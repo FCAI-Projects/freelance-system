@@ -73,6 +73,11 @@ namespace THE_APP.Controllers
             }
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+<<<<<<< HEAD
+             var roles = await UserManager.GetRolesAsync(user.Id);
+
+            return RedirectToLocal("/" + roles[0]);
+=======
             var roles = await UserManager.GetRolesAsync(user.Id);
             if (roles[0] != "freelancer")
             {
@@ -84,6 +89,7 @@ namespace THE_APP.Controllers
                 model.SavedPosts = db.SavedPosts.ToList().Where(post => post.FreelancerId == UserId);
                 return View(model);
             }
+>>>>>>> master
 
         }
 
