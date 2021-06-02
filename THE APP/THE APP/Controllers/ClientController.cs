@@ -30,6 +30,12 @@ namespace THE_APP.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult EditPost(int id)
+        {
+            return View(db.Posts.Single(p => p.Id == id));
+        }
+
         [HttpPost]
         public ActionResult NewPost(PostModel pm)
         {
@@ -44,9 +50,41 @@ namespace THE_APP.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult AllPost()
+        public ActionResult AllPost(string search = null)
         {
+            if (search != null) {
+                return View(db.Posts.ToList().Where(post => post.Title.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0));
+            }
             return View(db.Posts.ToList());
+        }
+
+        public ActionResult EditPost(PostModel pm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("EditPost", pm);
+            }
+
+            var post = db.Posts.Single(p => p.Id == pm.Id);
+            post.Title = pm.Title;
+            post.Type = pm.Type;
+            post.Budget = pm.Budget;
+            post.Description = pm.Description;
+
+            db.SaveChanges();
+
+            return RedirectToAction("AllPost");
+
+        }
+
+        [HttpGet]
+        public ActionResult DeletePost(int id)
+        {
+            var post = db.Posts.Single(p => p.Id == id);
+            db.Posts.Remove(post);
+            db.SaveChanges();
+
+            return RedirectToAction("AllPost");
         }
 
         public ActionResult Proposals()

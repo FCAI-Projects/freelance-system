@@ -14,10 +14,11 @@
     </header>
     <nav class="navbar navbar-light bg-light">
         <div class="container">
-            <form class="d-flex align-items-center">
-                <label class="form-label mb-0 me-2" for="filter">Filter:</label>
-                <input class="form-control" id="filter" type="text" aria-label="Filter">
-            </form>
+            @using (@Html.BeginForm("Index", "Home", FormMethod.Get, new { @class= "d-flex align-items-center" }))
+            {
+                @Html.Label("filter", "Filter", new { @class= "form-label mb-0 me-2" })
+                @Html.TextBox("search", "", new { @class= "form-control", id= "filter" })
+            }
             @{Html.RenderAction("LoginPartial", "Home");}
         </div>
     </nav>

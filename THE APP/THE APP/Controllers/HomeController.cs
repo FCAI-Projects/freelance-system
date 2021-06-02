@@ -55,8 +55,16 @@ namespace THE_APP.Controllers
 
 
 
-        public async Task<ActionResult> Index(HomeViewModel model)
+        public async Task<ActionResult> Index(HomeViewModel model, string search = null)
         {
+            if (search != null) {
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                foreach (var m in model.Posts) {
+                    m.Client = db.Users.Single(u => u.Id == m.ClientId);
+                }
+                model.Posts = model.Posts.Where(post => post.Title.Contains(search) || post.Client.Fname.Contains(search) || post.Client.Lname.Contains(search) || post.CreationDate.ToString().Contains(search));
+                return View(model);
+            }
             
             if (!User.Identity.IsAuthenticated) {
                 model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
