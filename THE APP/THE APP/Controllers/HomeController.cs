@@ -58,8 +58,10 @@ namespace THE_APP.Controllers
 
         public async Task<ActionResult> Index(HomeViewModel model, string search = null)
         {
+            var UserId = User.Identity.GetUserId();
             if (search != null) {
                 model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                model.SavedPosts = db.SavedPosts.ToList().Where(post => post.FreelancerId == UserId);
                 foreach (var m in model.Posts) {
                     m.Client = db.Users.Single(u => u.Id == m.ClientId);
                 }
@@ -73,23 +75,17 @@ namespace THE_APP.Controllers
             }
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-<<<<<<< HEAD
-             var roles = await UserManager.GetRolesAsync(user.Id);
-
-            return RedirectToLocal("/" + roles[0]);
-=======
             var roles = await UserManager.GetRolesAsync(user.Id);
+
             if (roles[0] != "freelancer")
             {
-                return RedirectToLocal("/" + roles[0]);
+                 return RedirectToLocal("/" + roles[0]);
             }
             else {
-                var UserId = User.Identity.GetUserId();
                 model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
                 model.SavedPosts = db.SavedPosts.ToList().Where(post => post.FreelancerId == UserId);
                 return View(model);
             }
->>>>>>> master
 
         }
 

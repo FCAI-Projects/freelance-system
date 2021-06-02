@@ -61,7 +61,8 @@ namespace THE_APP.Controllers
                     Email = model.Email,
                     Fname = model.Fname,
                     Lname = model.Lname,
-                    PhoneNumber = model.Number
+                    PhoneNumber = model.Number,
+                    PhotoPath = "default.png"
                 };
                 
                 var result = await UserManager.CreateAsync(user, model.Password);
