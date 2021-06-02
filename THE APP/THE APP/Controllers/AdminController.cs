@@ -59,7 +59,8 @@ namespace THE_APP.Controllers
                    UserName = model.Email,
                     Email = model.Email,
                     Fname = model.Fname,
-                    Lname = model.Lname
+                    Lname = model.Lname,
+                    PhoneNumber = model.Number
                 };
                 
                 var result = await UserManager.CreateAsync(user, model.Password);
