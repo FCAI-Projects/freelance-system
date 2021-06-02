@@ -49,9 +49,26 @@ namespace THE_APP.Controllers
             return View(db.Posts.ToList());
         }
 
-        public ActionResult Propsals()
+        public ActionResult Proposals()
         {
-            return View();
+            string UserId = User.Identity.GetUserId();
+            var proposals = db.Proposals.Where(p => p.ClientId == UserId & p.status == null);
+            return View(proposals);
+        }
+
+        public ActionResult AcceptProposal(int id)
+        {
+            var post = db.Proposals.Single(p => p.id == id);
+            post.status = true;
+            db.SaveChanges();
+            return RedirectToAction("Proposals");
+        }
+        public ActionResult RejectProposal(int id)
+        {
+            var post = db.Proposals.Single(p => p.id == id);
+            post.status = false;
+            db.SaveChanges();
+            return RedirectToAction("Proposals");
         }
     }
 }

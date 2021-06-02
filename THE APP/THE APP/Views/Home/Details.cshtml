@@ -22,5 +22,42 @@
     <li class="list-group-item">
         Creation Date: @Html.DisplayFor(m => m.SinglePost.CreationDate)
     </li>
+    <li class="list-group-item">
+        Description: @Html.DisplayFor(m => m.SinglePost.Description)
+    </li>
 </ul>
-@Html.ActionLink("Go To HomePage", "Index", null, new { @class= "btn btn-outline-info mt-2" })
+<div class="d-flex justify-content-between mt-2">
+    @Html.ActionLink("Go To HomePage", "Index", null, new { @class = "btn btn-outline-info" })
+    @if (Request.IsAuthenticated)
+    {
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#send_propsal">Send A Proposal</button>
+    }
+</div>
+
+
+<div class="modal fade" id="send_propsal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @using (Html.BeginForm("SendProposal", "Freelancer", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "send_proposal_form" })) {
+        <div class="modal-body">
+
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.SinglePost.Id)
+            @Html.HiddenFor(m => m.SinglePost.ClientId)
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Proposal.Proposal, new { @class = "col-md-4 form-label" })
+                @Html.TextAreaFor(m => m.Proposal.Proposal, new { @class = "form-control" })
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </div>
+            }
+        </div>
+    </div>
+</div>

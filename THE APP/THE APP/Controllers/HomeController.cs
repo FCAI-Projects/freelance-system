@@ -65,8 +65,14 @@ namespace THE_APP.Controllers
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             var roles = await UserManager.GetRolesAsync(user.Id);
-
-            return RedirectToLocal("/" + roles[0]);
+            if (roles[0] != "freelancer")
+            {
+                return RedirectToLocal("/" + roles[0]);
+            }
+            else {
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                return View(model);
+            }
 
         }
 

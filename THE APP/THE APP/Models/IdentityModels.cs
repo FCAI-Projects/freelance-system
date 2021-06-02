@@ -33,6 +33,7 @@ namespace THE_APP.Models
 
 
         public DbSet<PostModel> Posts { get; set; }
+        public DbSet<ProposalModel> Proposals { get; set; }
             
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

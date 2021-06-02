@@ -12,5 +12,7 @@ namespace THE_APP.ViewModels
         public LoginViewModel LoginModel { get; set; }
         public IEnumerable<PostModel> Posts { get; set; }
         public PostModel SinglePost { get; set; }
+
+        public ProposalModel Proposal { get; set; }
     }
 }

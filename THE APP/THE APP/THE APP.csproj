@@ -255,12 +255,26 @@
     <Compile Include="Migrations\202105301848180_update-proposal-number2.Designer.cs">
       <DependentUpon>202105301848180_update-proposal-number2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106020210263_add-proposal.cs" />
+    <Compile Include="Migrations\202106020210263_add-proposal.Designer.cs">
+      <DependentUpon>202106020210263_add-proposal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106020221050_add-proposal-satus.cs" />
+    <Compile Include="Migrations\202106020221050_add-proposal-satus.Designer.cs">
+      <DependentUpon>202106020221050_add-proposal-satus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106020225311_add-proposal-client.cs" />
+    <Compile Include="Migrations\202106020225311_add-proposal-client.Designer.cs">
+      <DependentUpon>202106020225311_add-proposal-client.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DefaulValueAttribute.cs" />
     <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\ProposalModel.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\FreelancerViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -341,6 +355,7 @@
     <Content Include="Views\Admin\ViewUser.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Client\Proposals.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -398,6 +413,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105301848180_update-proposal-number2.resx">
       <DependentUpon>202105301848180_update-proposal-number2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106020210263_add-proposal.resx">
+      <DependentUpon>202106020210263_add-proposal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106020221050_add-proposal-satus.resx">
+      <DependentUpon>202106020221050_add-proposal-satus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106020225311_add-proposal-client.resx">
+      <DependentUpon>202106020225311_add-proposal-client.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
