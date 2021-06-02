@@ -1,7 +1,11 @@
-﻿@{
+﻿@model THE_APP.ViewModels.HomeViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="alert alert-primary mt-4" role="alert">
-    [Wall Layout] This Page Not Finished Yet !!!
+<div class="list-group mt-4">
+    @foreach (var item in Model.Posts)
+    {
+        @Html.ActionLink(item.Title, "Details", new { id=item.Id}, new { @class= "list-group-item list-group-item-action" })
+    }
 </div>

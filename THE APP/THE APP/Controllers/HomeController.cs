@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using THE_APP.Models;
+using THE_APP.ViewModels;
 
 namespace THE_APP.Controllers
 {
@@ -15,6 +16,8 @@ namespace THE_APP.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        ApplicationDbContext db = new ApplicationDbContext();
 
         public HomeController()
         {
@@ -52,10 +55,11 @@ namespace THE_APP.Controllers
 
 
 
-        public async Task<ActionResult> Index(RegisterLoginViewModel model)
+        public async Task<ActionResult> Index(HomeViewModel model)
         {
-
+            
             if (!User.Identity.IsAuthenticated) {
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
                 return View(model);
             }
 
@@ -80,10 +84,11 @@ namespace THE_APP.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(RegisterLoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(HomeViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
                 return View("Index", model);
             }
 
@@ -101,6 +106,7 @@ namespace THE_APP.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
+                    model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
                     return View("Index", model);
             }
         }
@@ -118,7 +124,7 @@ namespace THE_APP.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterLoginViewModel model)
+        public async Task<ActionResult> Register(HomeViewModel model)
         {
 
             if (ModelState.IsValid)
@@ -159,6 +165,7 @@ namespace THE_APP.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
             return View("Index", model);
         }
 
@@ -166,18 +173,13 @@ namespace THE_APP.Controllers
             return PartialView("_LoginPartial");
         }
 
-        public ActionResult About()
+        public ActionResult Details(int id)
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            HomeViewModel model = new HomeViewModel();
+            model.SinglePost = db.Posts.ToList().Single(post => post.Id == id);
+            model.SinglePost.Client = db.Users.ToList().Single(user => user.Id == model.SinglePost.ClientId);
+            return View(model);
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

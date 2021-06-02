@@ -1,0 +1,26 @@
+﻿@model THE_APP.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_WallLayout.cshtml";
+}
+
+<h2 class="mt-3">Details About: @Html.DisplayFor(m => m.SinglePost.Title)</h2>
+
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">
+        Client Name: @Html.DisplayFor(m => m.SinglePost.Client.Fname)  @Html.DisplayFor(m => m.SinglePost.Client.Lname)
+    </li>
+    <li class="list-group-item">
+        Budget: $@Html.DisplayFor(m => m.SinglePost.Budget)
+    </li>
+    <li class="list-group-item">
+        Number Of Submitted Propsals: @Html.DisplayFor(m => m.SinglePost.ProposalNum)
+    </li>
+    <li class="list-group-item">
+        Type: @Html.DisplayFor(m => m.SinglePost.Type)
+    </li>
+    <li class="list-group-item">
+        Creation Date: @Html.DisplayFor(m => m.SinglePost.CreationDate)
+    </li>
+</ul>
+@Html.ActionLink("Go To HomePage", "Index", null, new { @class= "btn btn-outline-info mt-2" })
