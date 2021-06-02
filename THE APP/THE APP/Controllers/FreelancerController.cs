@@ -50,5 +50,33 @@ namespace THE_APP.Controllers
 
             return Redirect("/");
         }
+
+        public ActionResult SavedPosts() {
+            var UserId = User.Identity.GetUserId();
+            IEnumerable<SavedPostsModel> SavedPosts = db.SavedPosts.ToList().Where(p => p.FreelancerId == UserId);
+            foreach (var item in SavedPosts) {
+                item.Post = db.Posts.Single(p => p.Id == item.PostId);
+            }
+            return View(SavedPosts);
+        }
+
+        public ActionResult DeleteSavedPost(int id)
+        {
+            var Post = db.SavedPosts.ToList().Single(p => p.Id == id);
+            db.SavedPosts.Remove(Post);
+            db.SaveChanges();
+            return RedirectToAction("SavedPosts");
+        }
+
+        public ActionResult RatePost(HomeViewModel model) {
+            var UserId = User.Identity.GetUserId();
+            model.Rate.PostId = model.SinglePost.Id;
+            model.Rate.FreelancerId = UserId;
+
+            db.PostsRate.Add(model.Rate);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

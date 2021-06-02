@@ -14,5 +14,7 @@ namespace THE_APP.ViewModels
         public PostModel SinglePost { get; set; }
 
         public ProposalModel Proposal { get; set; }
+        public PostsRate Rate { get; set; }
+        public IEnumerable<SavedPostsModel> SavedPosts { get; set; }
     }
 }

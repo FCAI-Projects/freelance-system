@@ -6,6 +6,7 @@ This an ASP.NET MVC Project for IA (Internet Application) Project
 
 - Bootstrap (v5.0) [docs](https://getbootstrap.com/docs/5.0/getting-started/introduction)
 - jQuery (v3.4.1) [docs](https://api.jquery.com)
+- Font Awesome (v4.7) [docs](https://fontawesome.com/v4.7/icons)
 
 ## Open The Project Localy
 

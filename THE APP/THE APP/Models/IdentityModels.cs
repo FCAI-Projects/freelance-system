@@ -34,7 +34,9 @@ namespace THE_APP.Models
 
         public DbSet<PostModel> Posts { get; set; }
         public DbSet<ProposalModel> Proposals { get; set; }
-            
+        public DbSet<SavedPostsModel> SavedPosts { get; set; }
+        public DbSet<PostsRate> PostsRate { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

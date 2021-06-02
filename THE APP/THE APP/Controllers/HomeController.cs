@@ -70,7 +70,9 @@ namespace THE_APP.Controllers
                 return RedirectToLocal("/" + roles[0]);
             }
             else {
+                var UserId = User.Identity.GetUserId();
                 model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                model.SavedPosts = db.SavedPosts.ToList().Where(post => post.FreelancerId == UserId);
                 return View(model);
             }
 
@@ -181,11 +183,27 @@ namespace THE_APP.Controllers
 
         public ActionResult Details(int id)
         {
+            var UserId = User.Identity.GetUserId();
+            HomeViewModel model = new HomeViewModel
+            {
+                SinglePost = db.Posts.ToList().SingleOrDefault(post => post.Id == id)
+            };
 
-            HomeViewModel model = new HomeViewModel();
-            model.SinglePost = db.Posts.ToList().Single(post => post.Id == id);
-            model.SinglePost.Client = db.Users.ToList().Single(user => user.Id == model.SinglePost.ClientId);
+            model.Rate = db.PostsRate.SingleOrDefault(r => r.FreelancerId == UserId && r.PostId == model.SinglePost.Id);
+            model.SinglePost.Client = db.Users.ToList().SingleOrDefault(user => user.Id == model.SinglePost.ClientId);
             return View(model);
+        }
+
+        public ActionResult SavePost(int id) {
+            var UserId = User.Identity.GetUserId();
+            SavedPostsModel Saved = new SavedPostsModel
+            {
+                PostId = id,
+                FreelancerId = UserId
+            };
+            db.SavedPosts.Add(Saved);
+            db.SaveChanges();
+            return RedirectToAction("SavedPosts", "Freelancer");
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
