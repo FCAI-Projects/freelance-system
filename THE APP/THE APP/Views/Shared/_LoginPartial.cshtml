@@ -27,54 +27,60 @@ else
                     <h5 class="modal-title" id="exampleModalLabel">Create a new account.</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "registerform" }))
+                @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "registerform", enctype = "multipart/form-data" }))
                 {
-                    <div class="modal-body">
+            <div class="modal-body">
 
-                        @Html.AntiForgeryToken()
-                        <div class="form-group mb-2">
-                            @Html.LabelFor(m => m.RegisterModel.Fname, new { @class = "col-md-4 control-label" })
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(m => m.RegisterModel.Fname, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group mb-2">
-                            @Html.LabelFor(m => m.RegisterModel.Lname, new { @class = "col-md-4 control-label" })
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(m => m.RegisterModel.Lname, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group mb-2">
-                            @Html.LabelFor(m => m.RegisterModel.Email, new { @class = "col-md-4 control-label" })
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(m => m.RegisterModel.Email, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group mb-2">
-                            @Html.LabelFor(m => m.RegisterModel.Number, new { @class = "col-md-4 control-label" })
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(m => m.RegisterModel.Number, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group mb-2">
-                            @Html.LabelFor(m => m.RegisterModel.Password, new { @class = "col-md-4 control-label" })
-                            <div class="col-md-12">
-                                @Html.PasswordFor(m => m.RegisterModel.Password, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group mb-2">
-                            @Html.LabelFor(m => m.RegisterModel.ConfirmPassword, new { @class = "col-md-4 control-label" })
-                            <div class="col-md-12">
-                                @Html.PasswordFor(m => m.RegisterModel.ConfirmPassword, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group mb-2">
-                            @Html.LabelFor(m => m.RegisterModel.Role, new { @class = "col-md-4 control-label" })
-                            <div class="col-md-12">
-                                @Html.DropDownListFor(m => m.RegisterModel.Role, new SelectList(new[] { "client", "freelancer" }), "Select Role", new { @class = "form-select" })
-                            </div>
-                        </div>
+                @Html.AntiForgeryToken()
+                <div class="form-group mb-2">
+                    @Html.LabelFor(m => m.RegisterModel.Fname, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.RegisterModel.Fname, new { @class = "form-control" })
                     </div>
+                </div>
+                <div class="form-group mb-2">
+                    @Html.LabelFor(m => m.RegisterModel.Lname, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.RegisterModel.Lname, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    @Html.LabelFor(m => m.RegisterModel.Email, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.RegisterModel.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    @Html.LabelFor(m => m.RegisterModel.Number, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.RegisterModel.Number, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    @Html.LabelFor(m => m.RegisterModel.Password, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-12">
+                        @Html.PasswordFor(m => m.RegisterModel.Password, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    @Html.LabelFor(m => m.RegisterModel.ConfirmPassword, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-12">
+                        @Html.PasswordFor(m => m.RegisterModel.ConfirmPassword, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    @Html.LabelFor(m => m.RegisterModel.Role, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(m => m.RegisterModel.Role, new SelectList(new[] { "client", "freelancer" }), "Select Role", new { @class = "form-select" })
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    @Html.LabelFor(m => m.RegisterModel.PhotoPath, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-12">
+                        <input id="PhotoPath" title="Upload a product image" type="file" name="file" />
+                    </div>
+                </div>
+            </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <input type="submit" value="Register" class="btn btn-primary" />

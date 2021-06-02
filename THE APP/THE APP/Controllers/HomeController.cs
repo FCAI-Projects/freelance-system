@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -140,17 +141,34 @@ namespace THE_APP.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(HomeViewModel model)
+        public async Task<ActionResult> Register(HomeViewModel model, HttpPostedFileBase file)
         {
 
             if (ModelState.IsValid)
             {
+                string fileName = "";
+
+                if (file != null)
+                {
+                    Random rnd = new Random();
+                    string extension = Path.GetExtension(file.FileName);
+                    string newName = rnd.Next(0, 15153515) + DateTime.Now.Millisecond.ToString() + extension;
+                    file.SaveAs(HttpContext.Server.MapPath("~/Uploads/") + newName);
+                    fileName = newName;
+                }
+                else
+                {
+                    fileName = "default.png";
+                }
+
                 var user = new ApplicationUser
                 {
                     UserName = model.RegisterModel.Email,
                     Email = model.RegisterModel.Email,
                     Fname = model.RegisterModel.Fname,
-                    Lname = model.RegisterModel.Lname
+                    Lname = model.RegisterModel.Lname,
+                    PhoneNumber = model.RegisterModel.Number,
+                    PhotoPath = fileName
                 };
                 var result = await UserManager.CreateAsync(user, model.RegisterModel.Password);
                 if (result.Succeeded)

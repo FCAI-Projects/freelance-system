@@ -279,6 +279,10 @@
     <Compile Include="Migrations\202106020505315_add-posts-rate.Designer.cs">
       <DependentUpon>202106020505315_add-posts-rate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106021508493_add-photopath.cs" />
+    <Compile Include="Migrations\202106021508493_add-photopath.Designer.cs">
+      <DependentUpon>202106021508493_add-photopath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DefaulValueAttribute.cs" />
     <Compile Include="Models\PostModel.cs" />
@@ -371,9 +375,11 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Client\Proposals.cshtml" />
     <Content Include="Views\Freelancer\SavedPosts.cshtml" />
+    <Content Include="Views\Client\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -445,6 +451,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106020505315_add-posts-rate.resx">
       <DependentUpon>202106020505315_add-posts-rate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106021508493_add-photopath.resx">
+      <DependentUpon>202106021508493_add-photopath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

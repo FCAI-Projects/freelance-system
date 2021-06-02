@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -92,7 +93,8 @@ namespace THE_APP.Controllers
         Fname = user.Fname,
         Lname = user.Lname,
         Email = user.Email,
-        Number = user.PhoneNumber
+        Number = user.PhoneNumber,
+        PhotoPath = user.PhotoPath
       };
 
       Admin admin = new Admin
@@ -103,9 +105,22 @@ namespace THE_APP.Controllers
       return View(admin);
     }
 
-    public async Task<ActionResult> UpdateData(Admin data)
+    public async Task<ActionResult> UpdateData(Admin data, HttpPostedFileBase file)
     {
       var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+        if (file != null)
+        {
+            Random rnd = new Random();
+            string extension = Path.GetExtension(file.FileName);
+            string newName = rnd.Next(0, 15153515) + DateTime.Now.Millisecond.ToString() + extension;
+            file.SaveAs(HttpContext.Server.MapPath("~/Uploads/") + newName);
+            user.PhotoPath = newName;
+        }
+        else
+        {
+            user.PhotoPath = user.PhotoPath;
+        }
 
       user.Fname = data.AdminViewModel.Fname;
       user.Lname = data.AdminViewModel.Lname;
