@@ -60,7 +60,7 @@ namespace THE_APP.Controllers
             }
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            var roles = await UserManager.GetRolesAsync(user.Id);
+             var roles = await UserManager.GetRolesAsync(user.Id);
 
             return RedirectToLocal("/" + roles[0]);
 
