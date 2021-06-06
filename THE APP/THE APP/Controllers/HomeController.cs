@@ -60,17 +60,17 @@ namespace THE_APP.Controllers
         {
             var UserId = User.Identity.GetUserId();
             if (search != null) {
-                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true && post.AccpeptProposal != true);
                 model.SavedPosts = db.SavedPosts.ToList().Where(post => post.FreelancerId == UserId);
                 foreach (var m in model.Posts) {
                     m.Client = db.Users.Single(u => u.Id == m.ClientId);
                 }
-                model.Posts = model.Posts.Where(post => post.Title.Contains(search) || post.Client.Fname.Contains(search) || post.Client.Lname.Contains(search) || post.CreationDate.ToString().Contains(search));
+                model.Posts = model.Posts.Where(post => post.Title.ToLower().Contains(search.ToLower()) || post.Client.Fname.Contains(search) || post.Client.Lname.Contains(search) || post.CreationDate.ToString().Contains(search));
                 return View(model);
             }
             
             if (!User.Identity.IsAuthenticated) {
-                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true && post.AccpeptProposal != true);
                 return View(model);
             }
 
@@ -82,7 +82,7 @@ namespace THE_APP.Controllers
                  return RedirectToLocal("/" + roles[0]);
             }
             else {
-                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true && post.AccpeptProposal != true);
                 model.SavedPosts = db.SavedPosts.ToList().Where(post => post.FreelancerId == UserId);
                 return View(model);
             }
@@ -107,13 +107,13 @@ namespace THE_APP.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true && post.AccpeptProposal != true);
                 return View("Index", model);
             }
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.LoginModel.Email, model.LoginModel.Password, model.LoginModel.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.LoginModel.Username, model.LoginModel.Password, model.LoginModel.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -125,7 +125,7 @@ namespace THE_APP.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+                    model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true && post.AccpeptProposal != true);
                     return View("Index", model);
             }
         }
@@ -165,7 +165,7 @@ namespace THE_APP.Controllers
 
                 var user = new ApplicationUser
                 {
-                    UserName = model.RegisterModel.Email,
+                    UserName = model.RegisterModel.Username,
                     Email = model.RegisterModel.Email,
                     Fname = model.RegisterModel.Fname,
                     Lname = model.RegisterModel.Lname,
@@ -201,7 +201,7 @@ namespace THE_APP.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true);
+            model.Posts = db.Posts.ToList().Where(post => post.isAccepted == true && post.AccpeptProposal != true);
             return View("Index", model);
         }
 

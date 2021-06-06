@@ -283,6 +283,10 @@
     <Compile Include="Migrations\202106021508493_add-photopath.Designer.cs">
       <DependentUpon>202106021508493_add-photopath.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106062249087_add-new-column-in-posts.cs" />
+    <Compile Include="Migrations\202106062249087_add-new-column-in-posts.Designer.cs">
+      <DependentUpon>202106062249087_add-new-column-in-posts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DefaulValueAttribute.cs" />
     <Compile Include="Models\PostModel.cs" />
@@ -455,6 +459,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106021508493_add-photopath.resx">
       <DependentUpon>202106021508493_add-photopath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106062249087_add-new-column-in-posts.resx">
+      <DependentUpon>202106062249087_add-new-column-in-posts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

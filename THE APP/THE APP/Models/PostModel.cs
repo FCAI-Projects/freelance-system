@@ -32,6 +32,8 @@ namespace THE_APP.Models
 
         public bool? isAccepted { get; set; }
 
+        public bool? AccpeptProposal { get; set; }
+
         public ApplicationUser Client { get; set; }
 
         public string ClientId { get; set; }

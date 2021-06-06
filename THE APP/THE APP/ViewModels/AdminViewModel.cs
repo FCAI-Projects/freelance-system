@@ -22,6 +22,10 @@ namespace THE_APP.ViewModels
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
+        [Required]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
 

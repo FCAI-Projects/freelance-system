@@ -40,7 +40,7 @@ namespace THE_APP.Controllers
 
     public ActionResult Users()
     {
-        return View(db.Users.ToList());
+        return View(db.Users.ToList().Where(user=> user.Id != User.Identity.GetUserId()));
     }
 
     [HttpGet]
@@ -126,6 +126,7 @@ namespace THE_APP.Controllers
       {
         Fname = user.Fname,
         Lname = user.Lname,
+        Username = user.UserName,
         Email = user.Email,
         Number = user.PhoneNumber,
         PhotoPath = user.PhotoPath
@@ -160,6 +161,7 @@ namespace THE_APP.Controllers
       user.Lname = data.AdminViewModel.Lname;
       user.Email = data.AdminViewModel.Email;
       user.PhoneNumber = data.AdminViewModel.Number;
+      user.UserName = data.AdminViewModel.Username;
 
       var res = UserManager.Update(user);
 

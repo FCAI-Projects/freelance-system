@@ -45,6 +45,7 @@ namespace THE_APP.Controllers
             {
                 Fname = user.Fname,
                 Lname = user.Lname,
+                Username = user.UserName,
                 Email = user.Email,
                 Number = user.PhoneNumber,
                 PhotoPath = user.PhotoPath
@@ -73,7 +74,7 @@ namespace THE_APP.Controllers
             else {
                 user.PhotoPath = user.PhotoPath;
             }
-
+            user.UserName = data.AdminViewModel.Username;
             user.Fname = data.AdminViewModel.Fname;
             user.Lname = data.AdminViewModel.Lname;
             user.Email = data.AdminViewModel.Email;
@@ -149,10 +150,11 @@ namespace THE_APP.Controllers
 
         public ActionResult AllPost(string search = null)
         {
+            string UserId = User.Identity.GetUserId();
             if (search != null) {
-                return View(db.Posts.ToList().Where(post => post.Title.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0));
+                return View(db.Posts.ToList().Where(post => post.ClientId == UserId && post.Title.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0));
             }
-            return View(db.Posts.ToList());
+            return View(db.Posts.ToList().Where(post => post.ClientId == UserId));
         }
 
         public ActionResult EditPost(PostModel pm)
@@ -187,15 +189,22 @@ namespace THE_APP.Controllers
         public ActionResult Proposals()
         {
             string UserId = User.Identity.GetUserId();
-            var proposals = db.Proposals.Where(p => p.ClientId == UserId & p.status == null);
+            var proposals = db.Proposals.ToList().Where(p => p.ClientId == UserId & p.status == null);
+            foreach (var proposal in proposals) {
+                proposal.Post = db.Posts.Single(post => post.Id == proposal.PostId);
+            }
             return View(proposals);
         }
 
-        public ActionResult AcceptProposal(int id)
+        public ActionResult AcceptProposal(int id, int postId)
         {
-            var post = db.Proposals.Single(p => p.id == id);
-            post.status = true;
+            var proposal = db.Proposals.Single(p => p.id == id);
+            proposal.status = true;
             db.SaveChanges();
+            var post = db.Posts.Single(p => p.Id == postId);
+            post.AccpeptProposal = true;
+            db.SaveChanges();
+
             return RedirectToAction("Proposals");
         }
         public ActionResult RejectProposal(int id)

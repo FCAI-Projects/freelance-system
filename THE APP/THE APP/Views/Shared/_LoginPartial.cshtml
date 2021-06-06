@@ -51,6 +51,12 @@ else
                     </div>
                 </div>
                 <div class="form-group mb-2">
+                    @Html.LabelFor(m => m.RegisterModel.Username, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.RegisterModel.Username, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group mb-2">
                     @Html.LabelFor(m => m.RegisterModel.Number, new { @class = "col-md-4 control-label" })
                     <div class="col-md-12">
                         @Html.TextBoxFor(m => m.RegisterModel.Number, new { @class = "form-control" })
@@ -102,9 +108,9 @@ else
                     <div class="modal-body">
                         @Html.AntiForgeryToken()
                         <div class="form-group">
-                            @Html.LabelFor(m => m.LoginModel.Email, new { @class = "col-md-2 control-label" })
+                            @Html.LabelFor(m => m.LoginModel.Username, new { @class = "col-md-2 control-label" })
                             <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.LoginModel.Email, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.LoginModel.Username, new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
