@@ -287,6 +287,10 @@
     <Compile Include="Migrations\202106062249087_add-new-column-in-posts.Designer.cs">
       <DependentUpon>202106062249087_add-new-column-in-posts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106070911555_add-virtual.cs" />
+    <Compile Include="Migrations\202106070911555_add-virtual.Designer.cs">
+      <DependentUpon>202106070911555_add-virtual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DefaulValueAttribute.cs" />
     <Compile Include="Models\PostModel.cs" />
@@ -462,6 +466,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106062249087_add-new-column-in-posts.resx">
       <DependentUpon>202106062249087_add-new-column-in-posts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106070911555_add-virtual.resx">
+      <DependentUpon>202106070911555_add-virtual.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

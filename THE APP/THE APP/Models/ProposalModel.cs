@@ -11,13 +11,13 @@ namespace THE_APP.Models
 
         public string Proposal { get; set; }
 
-        public ApplicationUser Freelancer { get; set; }
+        public virtual ApplicationUser Freelancer { get; set; }
         public string FreelancerId { get; set; }
 
-        public ApplicationUser Client { get; set; }
+        public virtual ApplicationUser Client { get; set; }
         public string ClientId { get; set; }
 
-        public PostModel Post { get; set; }
+        public virtual PostModel Post { get; set; }
         public int PostId { get; set; }
 
         public DateTime CreationDate { get; set; }

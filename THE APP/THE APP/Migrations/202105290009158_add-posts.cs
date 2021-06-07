@@ -21,7 +21,7 @@ namespace THE_APP.Migrations
                         Client_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.Client_Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.Client_Id, cascadeDelete: true)
                 .Index(t => t.Client_Id);
             
         }

@@ -9,11 +9,11 @@ namespace THE_APP.Models
     {
         public int Id { get; set; }
 
-        public PostModel Post { get; set; }
+        public virtual PostModel Post { get; set; }
 
         public int PostId { get; set; }
 
-        public ApplicationUser Freelancer { get; set; }
+        public virtual ApplicationUser Freelancer { get; set; }
 
         public string FreelancerId { get; set; }
 

@@ -112,8 +112,13 @@ namespace THE_APP.Controllers
     {
         if (ModelState.IsValid)
         {
-            db.Entry(user).State = EntityState.Modified;
-            db.SaveChanges();
+             var u = UserManager.FindById(user.Id);
+                u.Fname = user.Fname;
+                u.Lname = user.Lname;
+                u.Email = user.Email;
+                u.UserName = user.UserName;
+                u.PhoneNumber = user.PhoneNumber;
+                UserManager.Update(u);
             return RedirectToAction("Users");
         }
         return View(User);

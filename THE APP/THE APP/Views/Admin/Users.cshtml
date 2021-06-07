@@ -42,7 +42,6 @@
                     @Html.DisplayFor(modelItem => item.Lname)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
                     @Html.ActionLink("View User", "ViewUser", new { id = item.Id }, new { @class = "btn btn-primary" })
                     <form style="display: inline" action="@Url.Action("Delete", new{ id = @item.Id })" method="post"><input type="submit" value="Delete" class="btn btn-danger" /></form>
                 </td>

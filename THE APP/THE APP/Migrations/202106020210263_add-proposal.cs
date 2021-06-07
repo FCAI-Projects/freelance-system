@@ -18,7 +18,7 @@ namespace THE_APP.Migrations
                         CreationDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.AspNetUsers", t => t.FreelancerId)
+                .ForeignKey("dbo.AspNetUsers", t => t.FreelancerId, cascadeDelete: true)
                 .ForeignKey("dbo.PostModels", t => t.PostId, cascadeDelete: true)
                 .Index(t => t.FreelancerId)
                 .Index(t => t.PostId);

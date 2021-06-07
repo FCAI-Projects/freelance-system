@@ -34,7 +34,7 @@ namespace THE_APP.Models
 
         public bool? AccpeptProposal { get; set; }
 
-        public ApplicationUser Client { get; set; }
+        public virtual ApplicationUser Client { get; set; }
 
         public string ClientId { get; set; }
     }
