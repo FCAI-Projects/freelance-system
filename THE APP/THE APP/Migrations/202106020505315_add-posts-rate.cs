@@ -17,7 +17,7 @@ namespace THE_APP.Migrations
                         Rate = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.FreelancerId)
+                .ForeignKey("dbo.AspNetUsers", t => t.FreelancerId, cascadeDelete: true)
                 .ForeignKey("dbo.PostModels", t => t.PostId, cascadeDelete: true)
                 .Index(t => t.PostId)
                 .Index(t => t.FreelancerId);

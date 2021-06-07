@@ -19,7 +19,7 @@ This an ASP.NET MVC Project for IA (Internet Application) Project
 Now The Credentials of the admin user is:
 
 ```
-Email: admin@support.com
+Username: admin@support.com
 Password: BE'c6X?E
 ```
 
