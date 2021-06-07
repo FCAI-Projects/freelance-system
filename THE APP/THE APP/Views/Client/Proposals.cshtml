@@ -6,31 +6,33 @@
 }
 
 <h2>Propsals</h2>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Post.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proposal)
+            </th>
+            <th></th>
+        </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Post.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Proposal)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Post.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proposal)
+                </td>
+                <td>
+                    <form style="display: inline" action="@Url.Action("AcceptProposal", new{ id = @item.id, postId = @item.PostId })" method="post"><input type="submit" value="Accept" class="btn btn-success" /></form>
+                    <form style="display: inline" action="@Url.Action("RejectProposal", new{ id = @item.id })" method="post"><input type="submit" value="Reject" class="btn btn-danger" /></form>
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Post.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Proposal)
-        </td>
-        <td>
-            <form style="display: inline" action="@Url.Action("AcceptProposal", new{ id = @item.id, postId = @item.PostId })" method="post"><input type="submit" value="Accept" class="btn btn-success" /></form>
-            <form style="display: inline" action="@Url.Action("RejectProposal", new{ id = @item.id })" method="post"><input type="submit" value="Reject" class="btn btn-danger" /></form>
-        </td>
-    </tr>
-}
-
-</table>
+    </table>
+</div>

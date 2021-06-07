@@ -7,66 +7,67 @@
 
 <h2>IsAccepted</h2>
 
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Budget)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProposalNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isAccepted)
+            </th>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Budget)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProposalNum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isAccepted)
-        </th>
+            <th style="min-width: 200px"></th>
+        </tr>
 
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Budget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProposalNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isAccepted)
+                </td>
 
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Title)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Type)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Budget)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CreationDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProposalNum)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.isAccepted)
-    </td>
+                <td>
+                    <form style="display: inline" action="@Url.Action("Accsept", new{ id = @item.Id })" method="post"><input type="submit" value="Accsept" class="btn btn-success" /></form>
+                    <form style="display: inline" action="@Url.Action("Rigect", new{ id = @item.Id })" method="post"><input type="submit" value="Rigect" class="btn btn-danger" /></form>
 
-    <td>
-        <form style="display: inline" action="@Url.Action("Accsept", new{ id = @item.Id })" method="post"><input type="submit" value="Accsept" class="btn btn-success" /></form>
-        <form style="display: inline" action="@Url.Action("Rigect", new{ id = @item.Id })" method="post"><input type="submit" value="Rigect" class="btn btn-danger"/></form>
-        
-    </td>
-</tr>
-        
-    }
+                </td>
+            </tr>
 
-</table>
+        }
+
+    </table>
+</div>

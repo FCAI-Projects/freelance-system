@@ -9,10 +9,10 @@
 
 <div class="row">
 
-    <div class="col-3">
+    <div class="col-md-3 col-sm-12">
         <img class="img-thumbnail mx-auto d-block rounded" src=@(String.Format("{0}://{1}/Uploads/{2}", Request.Url.Scheme, Request.Url.Authority, Model.AdminViewModel.PhotoPath)) />
     </div> 
-    <form id="FormUpdateAdmin" class="col-9" enctype="multipart/form-data">
+    <form id="FormUpdateAdmin" class="col-md-9 col-sm-12" enctype="multipart/form-data">
         <div id="InputError" class="alert alert-danger" role="alert" style="display: none">
             Please insert all Data
         </div>

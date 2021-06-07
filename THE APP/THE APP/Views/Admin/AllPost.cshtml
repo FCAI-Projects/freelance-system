@@ -6,56 +6,57 @@
 }
 
 <h2>All Post</h2>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Budget)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProposalNum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isAccepted)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Budget)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProposalNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.isAccepted)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditPost", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "DeletePost", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Budget)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProposalNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isAccepted)
+            </th>
+            <th style="min-width: 200px"></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Budget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProposalNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isAccepted)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditPost", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "DeletePost", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

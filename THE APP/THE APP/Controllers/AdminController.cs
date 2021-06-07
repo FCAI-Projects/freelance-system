@@ -57,7 +57,7 @@ namespace THE_APP.Controllers
             {
                 var user = new ApplicationUser
                 {
-                   UserName = model.Email,
+                    UserName = model.Username,
                     Email = model.Email,
                     Fname = model.Fname,
                     Lname = model.Lname,
@@ -73,7 +73,7 @@ namespace THE_APP.Controllers
                 }
                 AddErrors(result);
             }
-            return RedirectToAction("Index");
+            return View(model);
         }
 
     public ActionResult ViewUser(String id)

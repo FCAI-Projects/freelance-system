@@ -6,8 +6,6 @@
 
 <h2>EditPost</h2>
 
-<h2>Edit Post</h2>
-
 @using (Html.BeginForm())
 {
     <div class="form-group">
@@ -38,6 +36,6 @@
         @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
     </div>
 
-    <button type="submit" class="btn btn-primary form-control">Edit</button>
+    <button type="submit" class="btn btn-primary mt-2">Edit</button>
 
 }
